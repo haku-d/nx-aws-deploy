@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "AwsDeploy",
+  "title": "AWS Deploy",
+  "type": "object",
+  "description": "Deployment of Angular CLI applications to AWS",
+  "properties": {
+    "configuration": {
+      "type": "string",
+      "description": "A named build target, as specified in the `configurations` section of angular.json. Each named target is accompanied by a configuration of option defaults for that target. Same as `ng build --configuration=XXX`.",
+      "alias": "c",
+      "x-deprecated": "Use \"--buildTarget\" instead."
+    },
+    "noBuild": {
+      "type": "boolean",
+      "default": false,
+      "description": "Skip build process during deployment."
+    },
+    "baseHref": {
+      "type": "string",
+      "description": "This is an example how to override the workspace set of options. --- Base url for the application being built. Same as `ng build --base-href=/XXX/`."
+    },
+    "accessKeyId": {
+      "type": "string",
+      "description": "The accessKeyId from AWS.",
+      "x-deprecated": "Use \"the environment variables\" instead."
+    },
+    "secretAccessKey": {
+      "type": "string",
+      "description": "The secret access key from AWS.",
+      "x-deprecated": "Use \"the environment variables\" instead."
+    },
+    "region": {
+      "type": "string",
+      "description": "Region for deployment.",
+      "x-deprecated": "Use \"the environment variables\" instead."
+    },
+    "bucket": {
+      "type": "string",
+      "description": "AWS bucket to be used."
+    },
+    "subFolder": {
+      "type": "string",
+      "description": "Subfolder from AWS bucket."
+    },
+    "cfDistributionId": {
+      "type": "string",
+      "description": "Optional AWS CloudFront distribution id to create an invalidation."
+    },
+    "buildTarget": {
+      "type": "string",
+      "description": "A named build target, as specified in the `configurations` section of angular.json . Each named target is accompanied by a configuration of option defaults for that target. This is equivalent as calling the command `ng build --configuration=XXX`."
+    },
+    "deleteAfterUpload": {
+      "type": "boolean",
+      "default": false,
+      "description": "Remove all other files in the bucket after a successful upload."
+    },
+    "deleteBeforeUpload": {
+      "type": "boolean",
+      "default": false,
+      "description": "Remove all files in the bucket before uploading.",
+      "globFileUploadParamsList": {
+        "type": "array",
+        "description": "An array of objects representing params to pass to the s3.upload method (https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#upload-property). In addition to the params, each object has a glob property allowing to target params to specific files."
+      }
+    }
+  }
+}
